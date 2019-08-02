@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
   def index
-    render_json(apps)
+    render json: apps
   end
 
   private
 
   def heroku
     #raise 401 unless request.env["bouncer.token"]
-    PlatformAPI.connect_oauth("6cd00b20-fa73-4cd3-a34f-7f740375ef07")
+    PlatformAPI.connect_oauth(ENV["HEROKU_OAUTH_SECRET"])
   end
 
   def apps
